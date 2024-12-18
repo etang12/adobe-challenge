@@ -88,7 +88,7 @@ A log is structured as such:
     ]
   ]
 ```
-- source - source lead being duplicated
+- source - source lead that has duplicate(s)
 
 - duplicate - duplicate lead being removed
 
