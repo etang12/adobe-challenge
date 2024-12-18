@@ -3,29 +3,6 @@
     [
       {
         "source": {
-          "_id": "jkj238238jdsnfsj23",
-          "email": "bill@bar.com",
-          "firstName": "Eric",
-          "lastName": "Smith",
-          "address": "888 Mayberry St",
-          "entryDate": "2014-05-07T17:33:20+00:00"
-        },
-        "duplicate": {
-          "_id": "jkj238238jdsnfsj23",
-          "email": "bill@bar.com",
-          "firstName": "John",
-          "lastName": "Smith",
-          "address": "888 Mayberry St",
-          "entryDate": "2014-05-07T17:33:20+00:00"
-        },
-        "field": "firstName",
-        "from": "John",
-        "to": "Eric"
-      }
-    ],
-    [
-      {
-        "source": {
           "_id": "wuj08238jdsnfsj23",
           "email": "foo@bar.com",
           "firstName": "Micah",
@@ -200,7 +177,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -221,7 +198,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -236,13 +213,13 @@
         },
         "field": "firstName",
         "from": "Ted",
-        "to": "Eric"
+        "to": "John"
       },
       {
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -263,7 +240,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -284,7 +261,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -414,7 +391,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -435,28 +412,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
-          "lastName": "Smith",
-          "address": "888 Mayberry St",
-          "entryDate": "2014-05-07T17:33:20+00:00"
-        },
-        "duplicate": {
-          "_id": "jkj238238jdsnfsj23",
-          "email": "foo@bar.com",
           "firstName": "John",
-          "lastName": "Smith",
-          "address": "123 Street St",
-          "entryDate": "2014-05-07T17:30:20+00:00"
-        },
-        "field": "firstName",
-        "from": "John",
-        "to": "Eric"
-      },
-      {
-        "source": {
-          "_id": "jkj238238jdsnfsj23",
-          "email": "bill@bar.com",
-          "firstName": "Eric",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
@@ -477,7 +433,7 @@
         "source": {
           "_id": "jkj238238jdsnfsj23",
           "email": "bill@bar.com",
-          "firstName": "Eric",
+          "firstName": "John",
           "lastName": "Smith",
           "address": "888 Mayberry St",
           "entryDate": "2014-05-07T17:33:20+00:00"
