@@ -25,8 +25,14 @@ function parseJson(inputFileName, outputFileName) {
     const jsonData = JSON.parse(fileData);
     const { leads: uniqueLeads, changeLog } = filterDuplicateLeads(jsonData);
 
-    fs.writeFileSync(outputFileName, JSON.stringify(uniqueLeads, null, 2));
-    fs.writeFileSync("change_log.json", JSON.stringify(changeLog, null, 2));
+    fs.writeFileSync(
+      outputFileName,
+      JSON.stringify({ leads: uniqueLeads }, null, 2)
+    );
+    fs.writeFileSync(
+      "change_log.json",
+      JSON.stringify({ logs: changeLog }, null, 2)
+    );
   } catch (err) {
     console.error(`Error processing file: ${err}`);
     process.exit(1);
