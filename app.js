@@ -23,9 +23,10 @@ function parseJson(inputFileName, outputFileName) {
   try {
     const fileData = fs.readFileSync(inputFileName);
     const jsonData = JSON.parse(fileData);
-    const uniqueLeads = filterUniqueLeads(jsonData);
+    const { leads: uniqueLeads, changeLog } = filterDuplicateLeads(jsonData);
 
-    fs.writeFileSync(outputFileName, JSON.stringify(uniqueLeads));
+    fs.writeFileSync(outputFileName, JSON.stringify(uniqueLeads, null, 2));
+    fs.writeFileSync("change_log.json", JSON.stringify(changeLog, null, 2));
   } catch (err) {
     console.error(`Error processing file: ${err}`);
     process.exit(1);
@@ -33,43 +34,71 @@ function parseJson(inputFileName, outputFileName) {
   return;
 }
 
-function filterUniqueLeads(jsonData) {
+function findFieldChanges(existingLead, duplicateLead) {
+  const changes = [];
+
+  for (const key in existingLead) {
+    if (existingLead[key] !== duplicateLead[key]) {
+      changes.push({
+        source: existingLead,
+        duplicate: duplicateLead,
+        field: key,
+        from: duplicateLead[key],
+        to: existingLead[key],
+      });
+    }
+  }
+
+  if (changes.length === 0) {
+    changes.push({
+      source: existingLead,
+      duplicate: duplicateLead,
+      field: "",
+      from: "",
+      to: "",
+    });
+  }
+
+  return changes;
+}
+
+function filterDuplicateLeads(jsonData) {
   const leads = jsonData.leads;
   const trackedLeads = leads.map((lead, index) => ({
     ...lead,
     originalIndex: index,
   }));
 
-  let sortedLeads = trackedLeads.sort((a, b) => {
-    const dateComparison = new Date(b.entryDate) - new Date(a.entryDate);
-    return dateComparison !== 0
-      ? dateComparison
-      : b.originalIndex - a.originalIndex;
-  });
+  const sortedLeads = trackedLeads
+    .sort((a, b) => {
+      const dateComparison = new Date(b.entryDate) - new Date(a.entryDate);
+      return dateComparison !== 0
+        ? dateComparison
+        : b.originalIndex - a.originalIndex;
+    })
+    .map(({ originalIndex, ...lead }) => lead);
 
   const seenIds = new Set();
   const seenEmails = new Set();
 
-  sortedLeads = sortedLeads.filter((lead) => {
-    if (seenIds.has(lead._id)) {
-      // log id has already been used
-      return false;
-    }
+  const filteredLeads = [];
+  const changeLog = [];
 
-    if (seenEmails.has(lead.email)) {
-      // log email has already been used
-      return false;
+  for (const lead of sortedLeads) {
+    if (seenIds.has(lead._id) || seenEmails.has(lead.email)) {
+      const existingLead = filteredLeads.find(
+        (f) => f._id === lead._id || f.email === lead.email
+      );
+      changeLog.push(findFieldChanges(existingLead, lead));
+      continue;
     }
 
     seenIds.add(lead._id);
     seenEmails.add(lead.email);
+    filteredLeads.push(lead);
+  }
 
-    return true;
-  });
-
-  const uniqueLeads = sortedLeads.map(({ originalIndex, ...lead }) => lead);
-
-  return { leads: uniqueLeads };
+  return { leads: filteredLeads, changeLog };
 }
 
 // Main execution
